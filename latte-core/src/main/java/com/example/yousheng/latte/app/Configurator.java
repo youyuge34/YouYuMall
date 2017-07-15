@@ -3,16 +3,21 @@ package com.example.yousheng.latte.app;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 /**
+ * @function 参数配置单例类
  * Created by yousheng on 17/7/14.
  */
 
 public class Configurator {
 
     private static final WeakHashMap<Object, Object> LATTE_CONFIGS = new WeakHashMap<>();
-
+    private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     public Configurator() {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
@@ -27,23 +32,35 @@ public class Configurator {
     }
 
     //线程安全的单例饿汉模式
-    private static  class Holder {
+    private static class Holder {
         private static final Configurator INSTANCE = new Configurator();
     }
 
     //确认配置
     public final void configure() {
+        initIcons();
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+    }
+
+    //在configure()时候初始化加载图标字体
+    private final void initIcons() {
+        if (ICONS.size() > 0) {
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+            for (int i = 1; i < ICONS.size(); i++) {
+                initializer.with(ICONS.get(i));
+            }
+        }
     }
 
     /**
      * 获取某具体配置的值
+     *
      * @param key
      * @param <T>
      * @return
      */
     @SuppressWarnings("unchecked")
-    final <T> T getConfiguration(Object key){
+    final <T> T getConfiguration(Object key) {
         checkConfig();
         final Object value = LATTE_CONFIGS.get(key);
         if (value == null) {
@@ -61,6 +78,11 @@ public class Configurator {
     }
 
     //----------下面是存放配置的方法---------------
+
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
+        ICONS.add(descriptor);
+        return this;
+    }
 
     public final Configurator withApiHost(String host) {
         LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
