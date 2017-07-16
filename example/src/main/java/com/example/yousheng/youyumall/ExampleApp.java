@@ -21,7 +21,7 @@ public class ExampleApp extends Application {
         //初始化配置项目
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
-                .withApiHost("")
+                .withApiHost("http://59.110.69.182/api/")
                 .withLoaderDelayed(1000)
                 .withJavascriptInterface("latte")
                 .withWeChatAppId("")

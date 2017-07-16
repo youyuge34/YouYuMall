@@ -2,7 +2,7 @@ package com.example.yousheng.latte.app;
 
 import android.content.Context;
 
-import java.util.WeakHashMap;
+import java.util.HashMap;
 
 /**
  * @function 对Configurator的进一步封装
@@ -18,7 +18,7 @@ public class Latte {
         return Configurator.getInstance();
     }
 
-    public static final WeakHashMap<Object,Object> getLatteConfigs(){
+    public static final HashMap<Object,Object> getLatteConfigs(){
         return Configurator.getInstance().getLatteConfigs();
     }
 

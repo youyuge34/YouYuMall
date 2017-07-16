@@ -8,7 +8,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:text="{fa-space-shuttle spin #553452cc}"
+        android:text="{fa-space-shuttle #553452cc}"
         android:textSize="80sp"
         android:shadowDx="8"
         android:shadowDy="8"

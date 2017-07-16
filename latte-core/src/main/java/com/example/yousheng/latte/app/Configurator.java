@@ -2,12 +2,15 @@ package com.example.yousheng.latte.app;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
-import java.util.WeakHashMap;
+import java.util.HashMap;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * @function 参数配置单例类
@@ -16,7 +19,8 @@ import java.util.WeakHashMap;
 
 public class Configurator {
 
-    private static final WeakHashMap<Object, Object> LATTE_CONFIGS = new WeakHashMap<>();
+    //存入的key是枚举类而非枚举类的name
+    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     public Configurator() {
@@ -27,7 +31,7 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    final WeakHashMap<Object, Object> getLatteConfigs() {
+    final HashMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
@@ -66,7 +70,7 @@ public class Configurator {
         if (value == null) {
             throw new NullPointerException(key.toString() + " IS NULL");
         }
-        return (T) LATTE_CONFIGS.get(key);
+        return (T) value;
     }
 
     //检查是否配置确认完成，不完成则不能获取某一配置值
@@ -86,6 +90,7 @@ public class Configurator {
 
     public final Configurator withApiHost(String host) {
         LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
+        Log.e(TAG, "withApiHost:---------->>> "+host );
         return this;
     }
 
