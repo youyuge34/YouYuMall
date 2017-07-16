@@ -3,7 +3,6 @@ package com.example.yousheng.latte.net;
 import com.example.yousheng.latte.app.ConfigKeys;
 import com.example.yousheng.latte.app.Latte;
 
-import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -19,13 +18,14 @@ public class RestCreator {
     /**
      * 参数容器
      */
-    private static final class ParamsHolder {
-        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
-    }
-
-    public static WeakHashMap<String, Object> getParams() {
-        return ParamsHolder.PARAMS;
-    }
+    //为了避免线程不安全，在初始化每个网络请求client时，初始化一个hashmap
+//    private static final class ParamsHolder {
+//        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+//    }
+//
+//    public static WeakHashMap<String, Object> getParams() {
+//        return ParamsHolder.PARAMS;
+//    }
 
     private static final class RetrofitHolder {
         private static final String BASE_URL = Latte.getLatteConfiguration(ConfigKeys.API_HOST);
