@@ -13,7 +13,7 @@ public class Latte {
     public static final Configurator init(Context context){
         if(context!=null){
            getLatteConfigs().put(ConfigKeys.APPLICATION_CONTEXT,context.getApplicationContext());
-            getLatteConfigs().put(ConfigKeys.LOADER_DELAYED,500);
+            getLatteConfigs().put(ConfigKeys.LOADER_DELAYED,500l);
         }
 
         return Configurator.getInstance();

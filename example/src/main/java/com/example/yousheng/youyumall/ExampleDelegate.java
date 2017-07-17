@@ -36,7 +36,7 @@ public class ExampleDelegate extends LatteDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                    Toast.makeText(Latte.getAppContext(),response.substring(0,40),Toast.LENGTH_LONG).show();
+                    Toast.makeText(Latte.getAppContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {
