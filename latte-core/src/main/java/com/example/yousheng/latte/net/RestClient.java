@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
@@ -92,11 +93,24 @@ public class RestClient {
             case POST:
                 call = restService.post(URL, PARAMS);
                 break;
+            case POST_RAW:
+                call = restService.postRaw(URL, BODY);
+                break;
             case PUT:
                 call = restService.put(URL, PARAMS);
                 break;
+            case PUT_RAW:
+                call = restService.putRaw(URL, BODY);
+                break;
             case DELETE:
                 call = restService.delete(URL, PARAMS);
+                break;
+            case UPLOAD:
+                final RequestBody requestBody =
+                        RequestBody.create(MultipartBody.FORM, FILE);
+                final MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call = restService.upload(URL, body);
                 break;
             default:
                 break;
@@ -104,7 +118,6 @@ public class RestClient {
         if (call != null) {
             call.enqueue(getRequestCallback());
         }
-//        else throw new RuntimeException("the call in RestClient is null");
 
     }
 
@@ -118,15 +131,34 @@ public class RestClient {
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+        if (BODY == null) {
+            request(HttpMethod.POST);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null!");
+            }
+            request(HttpMethod.POST_RAW);
+        }
     }
 
+
     public final void put() {
-        request(HttpMethod.PUT);
+        if (BODY == null) {
+            request(HttpMethod.PUT);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null!");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
     }
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
     }
 
 
