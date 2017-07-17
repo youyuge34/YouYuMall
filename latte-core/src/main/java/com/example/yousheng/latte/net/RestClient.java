@@ -7,6 +7,7 @@ import com.example.yousheng.latte.net.callback.IFailure;
 import com.example.yousheng.latte.net.callback.IRequest;
 import com.example.yousheng.latte.net.callback.ISuccess;
 import com.example.yousheng.latte.net.callback.RequestCallbacks;
+import com.example.yousheng.latte.net.download.DownloadHandler;
 import com.example.yousheng.latte.ui.LatteLoader;
 import com.example.yousheng.latte.ui.LoaderStyle;
 
@@ -159,6 +160,12 @@ public class RestClient {
 
     public final void upload() {
         request(HttpMethod.UPLOAD);
+    }
+
+    public final void download() {
+        new DownloadHandler(PARAMS, URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME,
+                SUCCESS, FAILURE, ERROR)
+                .handleDownload();
     }
 
 
