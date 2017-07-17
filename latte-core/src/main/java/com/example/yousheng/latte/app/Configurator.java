@@ -2,7 +2,6 @@ package com.example.yousheng.latte.app;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -11,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import okhttp3.Interceptor;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * @function 参数配置单例类
@@ -71,8 +68,13 @@ public class Configurator {
     final <T> T getConfiguration(Object key) {
         checkConfig();
         final Object value = LATTE_CONFIGS.get(key);
+
         if (value == null) {
-            throw new NullPointerException(key.toString() + " IS NULL");
+            if(key.equals(ConfigKeys.INTERCEPTOR)){
+                return null;
+            }else {
+                throw new NullPointerException(key.toString() + " IS NULL");
+            }
         }
         return (T) value;
     }
@@ -106,7 +108,7 @@ public class Configurator {
 
     public final Configurator withApiHost(String host) {
         LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
-        Log.e(TAG, "withApiHost:---------->>> "+host );
+//        Log.e(TAG, "withApiHost:---------->>> "+host );
         return this;
     }
 

@@ -54,7 +54,7 @@ public class RestCreator {
         }
 
 
-        private static final long TIME_OUT = 60;
+        private static final long TIME_OUT = 40;
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();

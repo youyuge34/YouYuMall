@@ -3,6 +3,7 @@ package com.example.yousheng.youyumall;
 import android.app.Application;
 
 import com.example.yousheng.latte.app.Latte;
+import com.example.yousheng.latte.net.interceptors.LoggingInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
@@ -26,6 +27,8 @@ public class ExampleApp extends Application {
                 .withJavascriptInterface("latte")
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
+//                .withLoaderDelayed(3000)
+                .withInterceptor(new LoggingInterceptor())
                 .configure();
 
 

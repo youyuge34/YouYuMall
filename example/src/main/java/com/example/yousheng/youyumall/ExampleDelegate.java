@@ -3,7 +3,9 @@ package com.example.yousheng.youyumall;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.yousheng.latte.app.Latte;
 import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.net.RestClient;
 import com.example.yousheng.latte.net.callback.IError;
@@ -34,7 +36,7 @@ public class ExampleDelegate extends LatteDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-//                    Toast.makeText(Latte.getAppContext(),response.substring(0,40),Toast.LENGTH_LONG).show();
+                    Toast.makeText(Latte.getAppContext(),response.substring(0,40),Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {

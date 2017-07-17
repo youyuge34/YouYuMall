@@ -2,6 +2,8 @@ package com.example.yousheng.latte.net.callback;
 
 import android.os.Handler;
 
+import com.example.yousheng.latte.app.ConfigKeys;
+import com.example.yousheng.latte.app.Latte;
 import com.example.yousheng.latte.ui.LatteLoader;
 import com.example.yousheng.latte.ui.LoaderStyle;
 
@@ -59,6 +61,7 @@ public class RequestCallbacks implements Callback<String> {
 
     //停止loading dialog
     private final void stopLoading(){
+        final long delayed = Latte.getLatteConfiguration(ConfigKeys.LOADER_DELAYED);
         HANDLER.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -66,6 +69,6 @@ public class RequestCallbacks implements Callback<String> {
                     LatteLoader.stopLoading();
                 }
             }
-        },3000);
+        },delayed);
     }
 }
