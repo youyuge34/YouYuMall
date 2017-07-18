@@ -8,6 +8,8 @@ import android.view.View;
 import com.example.yousheng.ec.R;
 import com.example.yousheng.ec.R2;
 import com.example.yousheng.latte.delegates.LatteDelegate;
+import com.example.yousheng.latte.ui.launcher.ScrollLauncherTag;
+import com.example.yousheng.latte.util.storage.LattePreference;
 import com.example.yousheng.latte.util.timer.BaseTimerTask;
 import com.example.yousheng.latte.util.timer.ITimerListener;
 
@@ -35,6 +37,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
+            checkIsShow();
         }
     }
 
@@ -55,6 +58,21 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         mTimer.schedule(timerTask,0,1000);
     }
 
+    //判断是否启动引导页
+    private void checkIsShow(){
+        if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+
+            startWithPop(new LauncherScrollDelegate());
+//            extraTransaction().
+//            this.extraTransaction()
+//                    .setTag("").addSharedElement(null,"").
+        }else {
+            //检查用户是否登录
+
+
+        }
+    }
+
     @Override
     public void onTimer() {
         getActivity().runOnUiThread(new Runnable() {
@@ -66,6 +84,8 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                     if (mTimer != null) {
                         mTimer.cancel();
                         mTimer = null;
+
+                        checkIsShow();
                     }
                 }
             }

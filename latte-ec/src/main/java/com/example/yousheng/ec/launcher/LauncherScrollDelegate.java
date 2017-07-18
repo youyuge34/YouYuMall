@@ -2,7 +2,6 @@ package com.example.yousheng.ec.launcher;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -10,6 +9,8 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.yousheng.ec.R;
 import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.ui.launcher.LauncherHolderCreator;
+import com.example.yousheng.latte.ui.launcher.ScrollLauncherTag;
+import com.example.yousheng.latte.util.storage.LattePreference;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,13 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
     }
 
     private void initBanner() {
-        INTEGERS.add(R.mipmap.launcher_01);
-        INTEGERS.add(R.mipmap.launcher_02);
-        INTEGERS.add(R.mipmap.launcher_03);
-        INTEGERS.add(R.mipmap.launcher_04);
-        INTEGERS.add(R.mipmap.launcher_05);
+        if(INTEGERS.isEmpty()){
+            INTEGERS.add(R.mipmap.launcher_01);
+            INTEGERS.add(R.mipmap.launcher_02);
+            INTEGERS.add(R.mipmap.launcher_03);
+            INTEGERS.add(R.mipmap.launcher_04);
+            INTEGERS.add(R.mipmap.launcher_05);
+        }
         mConvenientBanner
                 .setPages(new LauncherHolderCreator(), INTEGERS)
                 .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
@@ -50,6 +53,12 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
     @Override
     public void onItemClick(int position) {
-        Log.i(TAG, "onItemClick: "+position);
+//        Log.i(TAG, "onItemClick: "+position);
+
+        //若点击了最后一张图
+        if(position == INTEGERS.size()-1){
+            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(),true);
+            //检查用户是否登录
+        }
     }
 }
