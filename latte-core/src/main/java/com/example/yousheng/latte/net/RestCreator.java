@@ -2,6 +2,7 @@ package com.example.yousheng.latte.net;
 
 import com.example.yousheng.latte.app.ConfigKeys;
 import com.example.yousheng.latte.app.Latte;
+import com.example.yousheng.latte.net.rx.RxRestService;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
@@ -35,6 +37,7 @@ public class RestCreator {
                 .baseUrl(BASE_URL)
                 //转换结果为字符串
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(OkHttpHolder.OK_HTTP_CLIENT)
                 .build();
     }
@@ -68,5 +71,14 @@ public class RestCreator {
 
     public static RestService getService() {
         return RestServiceHolder.SERVICE;
+    }
+
+    private static final class RxRestServiceHolder {
+        private static final RxRestService SERVICE = RetrofitHolder
+                .RETROFIT.create(RxRestService.class);
+    }
+
+    public static RxRestService getRxService() {
+        return RxRestServiceHolder.SERVICE;
     }
 }
