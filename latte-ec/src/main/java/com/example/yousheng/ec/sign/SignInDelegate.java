@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.example.yousheng.ec.R;
 import com.example.yousheng.ec.R2;
 import com.example.yousheng.latte.delegates.LatteDelegate;
+import com.example.yousheng.latte.net.RestClient;
+import com.example.yousheng.latte.net.callback.ISuccess;
+import com.example.yousheng.latte.util.log.LatteLogger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,8 +45,21 @@ public class SignInDelegate extends LatteDelegate {
     void onClickSignIn() {
         if(checkForm()){
             //登陆成功逻辑
-            Toast.makeText(getContext(),"login",Toast.LENGTH_SHORT).show();
-
+            new RestClient.Builder()
+                    .url("user")
+                    .loader(getContext())
+//                    .params("name", mName.getText().toString())
+//                    .params("email", mEmail.getText().toString())
+//                    .params("phone", mPhone.getText().toString())
+//                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            Toast.makeText(getContext(),"success",Toast.LENGTH_SHORT).show();
+                            LatteLogger.json("USER_PROFILE", response);
+                        }
+                    })
+                    .build().get();
 
         }
     }

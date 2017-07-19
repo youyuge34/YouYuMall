@@ -58,4 +58,9 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     //JSON依赖Android版
     compile 'com.alibaba:fastjson:1.1.57.android'
+    //log工具类
+    compile 'com.orhanobut:logger:2.1.1'
+    //数据库依赖
+    compile 'org.greenrobot:greendao-generator:3.2.2'
+    compile 'org.greenrobot:greendao:3.2.2'
 }
