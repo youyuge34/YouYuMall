@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
-import com.example.yousheng.ec.launcher.LauncherDelegate;
+import com.example.yousheng.ec.sign.SignUpDelegate;
 import com.example.yousheng.latte.activities.ProxyActivity;
 import com.example.yousheng.latte.delegates.LatteDelegate;
 
@@ -21,6 +21,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 }
