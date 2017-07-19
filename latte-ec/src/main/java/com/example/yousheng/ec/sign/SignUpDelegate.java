@@ -95,7 +95,8 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.tv_link_sign_in)
     void onClickSignIn() {
         //跳转登陆界面
-        Toast.makeText(getContext(),"登陆",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),"登陆",Toast.LENGTH_SHORT).show();
+        startWithPop(new SignInDelegate());
     }
 
     @Override
