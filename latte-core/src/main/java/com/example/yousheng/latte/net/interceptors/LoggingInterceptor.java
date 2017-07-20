@@ -1,6 +1,8 @@
 package com.example.yousheng.latte.net.interceptors;
 
-import android.util.Log;
+import android.annotation.SuppressLint;
+
+import com.example.yousheng.latte.util.log.LatteLogger;
 
 import java.io.IOException;
 
@@ -14,18 +16,19 @@ import okhttp3.Response;
 
 public class LoggingInterceptor implements Interceptor {
     private static final String TAG = "LoggingInterceptor";
+    @SuppressLint("DefaultLocale")
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
 
         long t1 = System.nanoTime();
-        Log.i(TAG, "intercept:   "+String.format("Sending request %s on %s%n%s",
+       LatteLogger.d("intercept:   "+String.format("Sending request %s on %s%n%s",
                 request.url(), chain.connection(), request.headers()));
 
         Response response = chain.proceed(request);
 
         long t2 = System.nanoTime();
-        Log.i(TAG, "intercept:   "+String.format("Received response for %s in %.1fms%n%s",
+        LatteLogger.d("intercept:   "+String.format("Received response for %s in %.1fms%n%s",
                 response.request().url(), (t2 - t1) / 1e6d, response.headers()));
         return response;
     }

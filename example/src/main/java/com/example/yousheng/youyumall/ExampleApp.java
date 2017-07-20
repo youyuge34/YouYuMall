@@ -5,7 +5,6 @@ import android.app.Application;
 import com.example.yousheng.ec.database.DatabaseManager;
 import com.example.yousheng.latte.app.Latte;
 import com.example.yousheng.latte.net.interceptors.LoggingInterceptor;
-import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -46,12 +45,12 @@ public class ExampleApp extends Application {
 //        initStetho();
     }
 
-    private void initStetho() {
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build());
-    }
+//    private void initStetho() {
+//        Stetho.initialize(
+//                Stetho.newInitializerBuilder(this)
+//                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+//                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+//                        .build());
+//    }
 }
 

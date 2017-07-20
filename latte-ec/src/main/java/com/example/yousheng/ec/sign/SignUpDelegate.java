@@ -1,5 +1,6 @@
 package com.example.yousheng.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -34,6 +35,8 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
 
+    private ISignListener mSignListener = null;
+
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if (checkForm()) {
@@ -50,7 +53,7 @@ public class SignUpDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignUp(response,mSignListener);
                         }
                     })
                     .build().get();
@@ -109,6 +112,15 @@ public class SignUpDelegate extends LatteDelegate {
         //跳转登陆界面
 //        Toast.makeText(getContext(),"登陆",Toast.LENGTH_SHORT).show();
         startWithPop(new SignInDelegate());
+    }
+
+    //获取注册成功的回调方法，在成功后的SignHandler中调用
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener){
+            mSignListener = (ISignListener) activity;
+        }
     }
 
     @Override
