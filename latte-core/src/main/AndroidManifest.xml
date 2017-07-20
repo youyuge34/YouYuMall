@@ -9,6 +9,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
+        <activity android:name=".wechat.templates.WXEntryTemplate" />
+        <receiver android:name=".wechat.templates.AppRegisterTemplate" />
     </application>
 
 </manifest>

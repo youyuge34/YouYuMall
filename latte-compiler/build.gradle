@@ -1,7 +1,13 @@
 apply plugin: 'java'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':latte-annotations')
+    //代码生成
+    compile 'com.squareup:javapoet:1.9.0'
+    //生成相关meta信息
+    compile 'com.google.auto.service:auto-service:1.0-rc3'
+    compile 'com.google.auto:auto-common:0.8'
 }
 
 sourceCompatibility = "1.7"
