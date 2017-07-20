@@ -9,6 +9,7 @@ import com.example.yousheng.ec.launcher.LauncherDelegate;
 import com.example.yousheng.ec.sign.ISignListener;
 import com.example.yousheng.ec.sign.SignInDelegate;
 import com.example.yousheng.latte.activities.ProxyActivity;
+import com.example.yousheng.latte.app.Latte;
 import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.ui.launcher.ILauncherListener;
 import com.example.yousheng.latte.ui.launcher.OnLauncherFinishTag;
@@ -23,6 +24,7 @@ public class ExampleActivity extends ProxyActivity
         if(actionBar!=null){
             actionBar.hide();
         }
+        Latte.getConfigurator().withActivity(this);
     }
 
     @Override
