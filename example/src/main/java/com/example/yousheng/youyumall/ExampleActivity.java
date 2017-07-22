@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.example.yousheng.ec.launcher.LauncherDelegate;
+import com.example.yousheng.ec.main.index.EcBottomDelegate;
 import com.example.yousheng.ec.sign.ISignListener;
 import com.example.yousheng.ec.sign.SignInDelegate;
 import com.example.yousheng.latte.activities.ProxyActivity;
@@ -36,11 +37,13 @@ public class ExampleActivity extends ProxyActivity
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this,"login ok",Toast.LENGTH_SHORT).show();
+        startWithPop(new EcBottomDelegate());
     }
 
     @Override
     public void onSignUpSuccess() {
         Toast.makeText(this,"register ok",Toast.LENGTH_SHORT).show();
+        startWithPop(new EcBottomDelegate());
     }
 
     //倒计时结束的回调方法
@@ -49,7 +52,7 @@ public class ExampleActivity extends ProxyActivity
         switch (tag){
             case SIGNED:
                 Toast.makeText(this,"用户已经登录",Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this,"用户未登录",Toast.LENGTH_SHORT).show();

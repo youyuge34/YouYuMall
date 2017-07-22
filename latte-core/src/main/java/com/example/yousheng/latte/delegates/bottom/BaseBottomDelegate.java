@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 
 /**
  * @function 主界面的容器基类
@@ -74,6 +75,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             TAB_BEANS.add(key);
             ITEM_DELEGATES.add(value);
         }
+//        LatteLogger.d(ITEMS.size());
+//        LatteLogger.d(ITEM_DELEGATES.size());
+//        LatteLogger.d(TAB_BEANS.size());
     }
 
 
@@ -82,7 +86,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
             //填充图标文字到底部栏中
-            LayoutInflater.from(getContext()).inflate(R.layout.bottom_item_icon_text_layout,mBottomBar);
+            LayoutInflater.from(getActivity()).inflate(R.layout.bottom_item_icon_text_layout,mBottomBar);
             //取出单个图标布局
             RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
             //设置每个item的点击事件
@@ -101,6 +105,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
                 itemText.setTextColor(mClickedColor);
             }
         }
+        final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 
     //点击图标后，重置所有颜色为初始色
@@ -125,6 +131,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         itemIcon.setTextColor(mClickedColor);
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
+//        LatteLogger.d("u touched tag: "+tag);
         getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         //注意先后顺序
         mCurrentDelegate = tag;
