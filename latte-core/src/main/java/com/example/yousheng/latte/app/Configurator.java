@@ -1,6 +1,7 @@
 package com.example.yousheng.latte.app;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -22,15 +23,18 @@ public class Configurator {
     private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
+    private static final Handler HANDLER = new Handler();
 
 
-    public Configurator() {
+    private Configurator() {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
+        LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     static Configurator getInstance() {
         return Holder.INSTANCE;
     }
+
 
     final HashMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;

@@ -1,6 +1,7 @@
 package com.example.yousheng.latte.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
 
@@ -30,6 +31,10 @@ public class Latte {
     //必须用Configrator里的getConfiguration，它会做预处理
     public static final Context getAppContext(){
         return getLatteConfiguration(ConfigKeys.APPLICATION_CONTEXT);
+    }
+
+    public static final Handler getHandler() {
+        return getLatteConfiguration(ConfigKeys.HANDLER);
     }
 
     public static Configurator getConfigurator() {
