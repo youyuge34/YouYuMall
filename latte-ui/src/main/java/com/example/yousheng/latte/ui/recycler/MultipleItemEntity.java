@@ -6,7 +6,7 @@ import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
 
-/**
+/** @function json数据的实例bean，但是数据存储在HashMap中，需要DataConverter解析创建此bean成为一个list
  * @function Created by yousheng on 17/7/22.
  */
 

@@ -65,6 +65,5 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     //微信
 //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    //BRVAH
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.25'
+
 }
