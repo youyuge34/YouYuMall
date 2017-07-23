@@ -43,7 +43,7 @@ public class SignUpDelegate extends LatteDelegate {
             //发送数据post给服务器
 //            Toast.makeText(getContext(),"注册",Toast.LENGTH_SHORT).show();
             new RestClient.Builder()
-                    .url("user")
+                    .url("user_profile.json")
                     .loader(getContext())
 //                    .params("name", mName.getText().toString())
 //                    .params("email", mEmail.getText().toString())

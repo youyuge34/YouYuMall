@@ -54,7 +54,7 @@ public class SignInDelegate extends LatteDelegate {
         if(checkForm()){
             //登陆成功逻辑
             new RestClient.Builder()
-                    .url("user")
+                    .url("user_profile.json")
                     .loader(getContext())
 //                    .params("name", mName.getText().toString())
 //                    .params("email", mEmail.getText().toString())

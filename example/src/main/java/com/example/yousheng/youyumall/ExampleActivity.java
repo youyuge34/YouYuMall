@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.example.yousheng.ec.launcher.LauncherDelegate;
-import com.example.yousheng.ec.main.index.EcBottomDelegate;
+import com.example.yousheng.ec.main.EcBottomDelegate;
 import com.example.yousheng.ec.sign.ISignListener;
 import com.example.yousheng.ec.sign.SignInDelegate;
 import com.example.yousheng.latte.activities.ProxyActivity;

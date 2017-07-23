@@ -1,7 +1,8 @@
-package com.example.yousheng.ec.main.index;
+package com.example.yousheng.ec.main;
 
 import android.graphics.Color;
 
+import com.example.yousheng.ec.main.index.IndexDelegate;
 import com.example.yousheng.ec.main.sort.SortDelegate;
 import com.example.yousheng.latte.delegates.bottom.BaseBottomDelegate;
 import com.example.yousheng.latte.delegates.bottom.BottomItemDelegate;
