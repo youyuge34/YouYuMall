@@ -14,7 +14,9 @@ import com.example.yousheng.latte.ui.recycler.DataConverter;
 import com.example.yousheng.latte.ui.recycler.MultipleRecyclerAdapter;
 
 /**
- * @function ui层。加载首页，刷新页面的处理类，index页面懒加载时调用此类的getFirstPage方法
+ * @function ui层。加载首页，刷新页面的处理类，设置刷新的监听，index页面懒加载时调用此类的getFirstPage方法
+ * 在getFirstPage方法中设置adapter，绑定视图与数据
+ * <p>
  * Created by yousheng on 17/7/22.
  */
 

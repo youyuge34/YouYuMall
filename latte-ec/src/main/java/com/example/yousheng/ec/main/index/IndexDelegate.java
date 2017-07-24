@@ -2,6 +2,7 @@ package com.example.yousheng.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,13 +13,14 @@ import android.view.View;
 import com.example.yousheng.ec.R;
 import com.example.yousheng.ec.R2;
 import com.example.yousheng.latte.delegates.bottom.BottomItemDelegate;
+import com.example.yousheng.latte.ui.recycler.Decration.BaseDecoration;
 import com.example.yousheng.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
 
 /**
- * @function 首页ec/index
+ * @function 首页ec/index，
  * Created by yousheng on 17/7/22.
  */
 
@@ -47,6 +49,7 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
     //同级下的 懒加载 ＋ ViewPager下的懒加载  的结合回调方法
+    //mRefreshHandler.getFirstPage的方法中，设定recyclerView的adapter
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
@@ -58,6 +61,8 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration(BaseDecoration
+                .create(ContextCompat.getColor(getContext(),R.color.divider_color),15));
     }
 
     private void initRefreshLayout() {
