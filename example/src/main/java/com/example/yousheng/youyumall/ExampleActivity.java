@@ -15,6 +15,8 @@ import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.ui.launcher.ILauncherListener;
 import com.example.yousheng.latte.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity
         implements ISignListener,ILauncherListener{
 
@@ -26,6 +28,8 @@ public class ExampleActivity extends ProxyActivity
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        //透明状态栏
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override

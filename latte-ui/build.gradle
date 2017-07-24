@@ -38,4 +38,11 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
     //RecyclerView分割线
     compile 'com.choices.divider:RecyclerView_Divider:1.0.0'
+    //沉浸式状态栏，仅4.4以上可以
+    compile ('com.github.niorgai:StatusBarCompat:2.1.4', {
+        exclude group: 'com.android.support'
+    })
+    //auto
+    provided 'com.google.auto.value:auto-value:1.4.1'
+    annotationProcessor "com.google.auto.value:auto-value:1.4.1"
 }

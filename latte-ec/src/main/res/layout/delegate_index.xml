@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -19,7 +20,8 @@
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@android:color/holo_orange_dark">
+        app:layout_behavior="com.example.yousheng.ec.main.index.TranslucentBehavior"
+        android:background="@android:color/transparent">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
