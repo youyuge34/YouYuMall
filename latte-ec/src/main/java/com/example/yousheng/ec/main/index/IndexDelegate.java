@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.yousheng.ec.R;
 import com.example.yousheng.ec.R2;
+import com.example.yousheng.ec.main.EcBottomDelegate;
 import com.example.yousheng.latte.delegates.bottom.BottomItemDelegate;
 import com.example.yousheng.latte.ui.recycler.Decration.BaseDecoration;
 import com.example.yousheng.latte.ui.refresh.RefreshHandler;
@@ -63,6 +64,9 @@ public class IndexDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(BaseDecoration
                 .create(ContextCompat.getColor(getContext(),R.color.divider_color),15));
+        //取出父fragment，因为我们的点击事件跳转改变的是整个EcBottomDelegate，而非子fragment
+        final EcBottomDelegate bottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(bottomDelegate));
     }
 
     private void initRefreshLayout() {
