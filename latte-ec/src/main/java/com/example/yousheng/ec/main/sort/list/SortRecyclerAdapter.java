@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.example.yousheng.ec.R;
 import com.example.yousheng.ec.main.sort.SortDelegate;
+import com.example.yousheng.ec.main.sort.content.ContentDelegate;
+import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.ui.recycler.ItemType;
 import com.example.yousheng.latte.ui.recycler.MultipleFields;
 import com.example.yousheng.latte.ui.recycler.MultipleItemEntity;
@@ -58,6 +60,8 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                             mPressPos = currentPos;
 
                             final int contentId = getData().get(currentPos).getValue(MultipleFields.ID);
+                            //点击后显示右侧列表
+                            showContent(contentId);
                         }
                     }
                 });
@@ -72,12 +76,25 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                     line.setBackgroundColor(ContextCompat.getColor(mContext, R.color.app_main));
                     itemView.setBackgroundColor(Color.WHITE);
                 }
-
                 break;
             default:
                 break;
+        }
+    }
 
+    /**
+     * @function 根据点击的编号，加载不同的右侧列表页
+     * @param contentId
+     */
+    private void showContent(int contentId) {
+        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+        switcchContent(delegate);
+    }
 
+    private void switcchContent(ContentDelegate delegate) {
+        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        if(contentDelegate != null){
+            contentDelegate.replaceFragment(delegate,false);
         }
     }
 }

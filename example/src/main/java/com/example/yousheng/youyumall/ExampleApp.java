@@ -30,7 +30,7 @@ public class ExampleApp extends Application {
                 .withJavascriptInterface("latte")
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
-                .withLoaderDelayed(1000)
+                .withLoaderDelayed(500)
                 .withInterceptor(new LoggingInterceptor())
 //                .withInterceptor(new DebugInterceptor("59.110.69.182",R.raw.test1))
                 .configure();
