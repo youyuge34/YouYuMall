@@ -2,6 +2,7 @@ package com.example.yousheng.ec.main;
 
 import android.graphics.Color;
 
+import com.example.yousheng.ec.main.discover.DiscoverDelegate;
 import com.example.yousheng.ec.main.index.IndexDelegate;
 import com.example.yousheng.ec.main.sort.SortDelegate;
 import com.example.yousheng.latte.delegates.bottom.BaseBottomDelegate;
@@ -24,7 +25,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> map = new LinkedHashMap<>();
         map.put(new BottomTabBean("{fa-home}", "主页"), new IndexDelegate());
         map.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegate());
-        map.put(new BottomTabBean("{fa-compass}", "发现"), new SortDelegate());
+        map.put(new BottomTabBean("{fa-compass}", "发现"), new DiscoverDelegate());
         map.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new SortDelegate());
         map.put(new BottomTabBean("{fa-user}", "我的"), new SortDelegate());
 
