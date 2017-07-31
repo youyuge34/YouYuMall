@@ -9,10 +9,14 @@ import com.example.yousheng.latte.delegates.bottom.BottomItemDelegate;
 import com.example.yousheng.latte.delegates.web.WebDelegateImpl;
 
 /**
+ * @function 发现子delegate，使用webview加载页面
  * Created by yousheng on 17/7/22.
  */
 
 public class DiscoverDelegate extends BottomItemDelegate {
+
+//    private static final String HTTP_URL = "http://123.206.230.157/";
+    private static final String HTTP_URL = "http://m.baidu.com/";
     @Override
     public Object setLayout() {
         return R.layout.delegate_discover;
@@ -26,9 +30,9 @@ public class DiscoverDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        final WebDelegateImpl delegate = WebDelegateImpl.create("http://m.baidu.com/");
+        final WebDelegateImpl delegate = WebDelegateImpl.create(HTTP_URL);
         //获占据整个包括底部tab的父fragment
         delegate.setTopDelegate(this.getParentDelegate());
-        getSupportDelegate().loadRootFragment(R.id.web_discovery_container,delegate);
+        getSupportDelegate().loadRootFragment(R.id.web_discovery_container, delegate);
     }
 }

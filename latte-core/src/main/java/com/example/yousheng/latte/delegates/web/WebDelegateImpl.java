@@ -18,7 +18,9 @@ import com.example.yousheng.latte.delegates.web.route.Router;
  * Created by 尤晟 on 2017-07-30.
  */
 
-public class WebDelegateImpl extends WebDelegate implements IWebViewInitializer{
+public class WebDelegateImpl extends WebDelegateDefault
+//        implements IWebViewInitializer
+    {
 
     public static WebDelegateImpl create(String url) {
         final Bundle bundle = new Bundle();
@@ -28,29 +30,29 @@ public class WebDelegateImpl extends WebDelegate implements IWebViewInitializer{
         return delegate;
     }
 
-    @Override
-    public Object setLayout() {
-        return getWebView();
-    }
+//    @Override
+//    public Object setLayout() {
+//        return getWebView();
+//    }
 
-    @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-            if(getUrl() != null){
-                //用原生的方式模拟web跳转并且进行页面加载
-                Router.getInstance().loadPage(this,getUrl());
-            }
-    }
+//    @Override
+//    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+//            if(getUrl() != null){
+//                //用原生的方式模拟web跳转并且进行页面加载
+//                Router.getInstance().loadPage(this,getUrl());
+//            }
+//    }
 
     //自身实现接口，直接返回自身
-    @Override
-    public IWebViewInitializer setInitializer() {
-        return this;
-    }
+//    @Override
+//    public IWebViewInitializer setInitializer() {
+//        return this;
+//    }
 
-    @Override
-    public WebView initWebViewSettings(WebView webView) {
-        return new WebViewSettingsInitializer().createWebView(webView);
-    }
+//    @Override
+//    public WebView initWebViewSettings(WebView webView) {
+//        return new WebViewSettingsInitializer().createWebView(webView);
+//    }
 
     @Override
     public WebViewClient initWebViewClient() {
@@ -58,8 +60,13 @@ public class WebDelegateImpl extends WebDelegate implements IWebViewInitializer{
         return client;
     }
 
-    @Override
-    public WebChromeClient initWebChromeClient() {
-        return new WebChromeClientImpl();
-    }
+        @Override
+        public boolean onBackPressedSupport() {
+            return false;
+        }
+
+        //    @Override
+//    public WebChromeClient initWebChromeClient() {
+//        return new WebChromeClientImpl();
+//    }
 }

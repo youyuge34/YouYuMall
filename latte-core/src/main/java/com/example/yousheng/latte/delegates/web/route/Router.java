@@ -9,10 +9,10 @@ import android.webkit.WebView;
 
 import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.delegates.web.WebDelegate;
-import com.example.yousheng.latte.delegates.web.WebDelegateImpl;
+import com.example.yousheng.latte.delegates.web.WebDelegateDefault;
 
 /**
- * @function 路由截断,线程安全的惰性单例模式
+ * @function 路由截断, 线程安全的惰性单例模式
  * Created by 尤晟 on 2017-07-30.
  */
 
@@ -20,7 +20,7 @@ public class Router {
     private Router() {
     }
 
-    private static class Holder{
+    private static class Holder {
         private static final Router INSTANCE = new Router();
     }
 
@@ -28,7 +28,7 @@ public class Router {
         return Holder.INSTANCE;
     }
 
-    public final boolean handleWebUrl(WebDelegate webDelegate,String url) {
+    public final boolean handleWebUrl(WebDelegate webDelegate, String url) {
         //如果js里包含电话协议
         if (url.contains("tel:")) {
             callPhone(webDelegate.getContext(), url);
@@ -47,9 +47,9 @@ public class Router {
 
         final LatteDelegate topDelegate = webDelegate.getTopDelegate();
 
-        final WebDelegateImpl toWebDelegate = WebDelegateImpl.create(url);
+        final WebDelegate toWebDelegate = WebDelegateDefault.create(url);
         topDelegate.getSupportDelegate().start(toWebDelegate);
-
+//        webDelegate.getWebView().loadUrl(url);
         return true;
     }
 

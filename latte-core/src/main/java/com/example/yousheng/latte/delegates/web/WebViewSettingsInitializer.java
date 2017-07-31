@@ -1,6 +1,7 @@
 package com.example.yousheng.latte.delegates.web;
 
 import android.annotation.SuppressLint;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -13,7 +14,7 @@ import android.webkit.WebView;
 public class WebViewSettingsInitializer {
 
     @SuppressLint("SetJavaScriptEnabled")
-    public WebView createWebView(WebView webView) {
+    public WebView createWebView(final WebView webView) {
 
 //        WebView.setWebContentsDebuggingEnabled(true);
         //不能横向滚动
@@ -50,6 +51,19 @@ public class WebViewSettingsInitializer {
         settings.setDatabaseEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+//        webView.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+//                    if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {  //表示按返回键时的操作
+//                        webView.goBack();   //后退
+//                        //webview.goForward();//前进
+//                        return true;    //已处理
+//                    }
+//                }
+//                return false;
+//            }
+//        });
         return webView;
     }
 }

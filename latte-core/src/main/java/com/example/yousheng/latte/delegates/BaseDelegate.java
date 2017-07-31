@@ -12,7 +12,8 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
  * Created by yousheng on 17/7/15.
- *  因为不想实例化，所以用抽象类
+ *
+ * @function 因为不想实例化，所以用抽象类
  */
 
 public abstract class BaseDelegate extends SwipeBackFragment {
@@ -24,22 +25,22 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     public abstract Object setLayout();
 
     //子类初始化时回调
-    public abstract void onBindView( @Nullable Bundle savedInstanceState , View rootView);
+    public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = null;
         Object mLayout = setLayout();
-        if(mLayout instanceof Integer){
-            rootView = inflater.inflate((Integer) mLayout,container,false);
-        }else if(mLayout instanceof View){
+        if (mLayout instanceof Integer) {
+            rootView = inflater.inflate((Integer) mLayout, container, false);
+        } else if (mLayout instanceof View) {
             rootView = (View) mLayout;
         }
 
-        if(rootView!=null){
-            mUnbinder = ButterKnife.bind(this,rootView);
-            onBindView(savedInstanceState,rootView);
+        if (rootView != null) {
+            mUnbinder = ButterKnife.bind(this, rootView);
+            onBindView(savedInstanceState, rootView);
         }
 
         return rootView;
@@ -48,7 +49,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(mUnbinder!=null){
+        if (mUnbinder != null) {
             mUnbinder.unbind();
         }
     }
