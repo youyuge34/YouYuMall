@@ -1,5 +1,6 @@
 package com.example.yousheng.ec.main.discover;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -15,8 +16,10 @@ import com.example.yousheng.latte.delegates.web.WebDelegateImpl;
 
 public class DiscoverDelegate extends BottomItemDelegate {
 
-//    private static final String HTTP_URL = "http://123.206.230.157/";
-    private static final String HTTP_URL = "http://m.baidu.com/";
+    //    private static final String HTTP_URL = "http://123.206.230.157/";
+//    private static final String HTTP_URL = "http://m.baidu.com/";
+    private static final String HTTP_URL = "index.html";
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_discover;

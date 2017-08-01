@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>发现详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<h1>这是本地页面1</h1>
+
+<button id="test">测试事件</button>
+
+<script type="text/javascript">
+       function nativeCall() {
+       alert('安卓调用了js的alert代码');
+       }
+
+    document.getElementById('test').onclick = function (){
+        var command = {
+                'action':'test'
+        };
+        latte.event(JSON.stringify(command));
+    };
+
+
+</script>
+</body>
+</html>
