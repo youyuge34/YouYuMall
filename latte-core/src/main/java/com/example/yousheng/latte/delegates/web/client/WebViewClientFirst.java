@@ -17,13 +17,12 @@ import com.example.yousheng.latte.util.log.LatteLogger;
  * Created by 尤晟 on 2017-07-30.
  */
 
-public class WebViewClientImpl extends WebViewClient {
-    private final WebDelegate DELEGATE;
-    //应用内部页面是否加载完毕，因为重定向也会触发shouldOverrideUrlLoading方法
+public class WebViewClientFirst extends WebViewClientDefault {
+    //过滤重定向。应用内部页面是否加载完毕，因为重定向也会触发shouldOverrideUrlLoading方法
     private boolean isPageOk = false;
 
-    public WebViewClientImpl(WebDelegate DELEGATE) {
-        this.DELEGATE = DELEGATE;
+    public WebViewClientFirst(WebDelegate DELEGATE) {
+        super(DELEGATE);
     }
 
 //    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -48,14 +47,11 @@ public class WebViewClientImpl extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         LatteLogger.d("shouldOverrideUrlLoading", url);
         //js的重定向都由原生来接管
-        //比如location.href或者a标签，全部以这种方式拦截下来，强制跳转
+        //比如location.href或者a标签，全部以这种方式拦截下来，强制跳转,打开新Delegate
         if (isPageOk) {
             return Router.getInstance().handleWebUrl(DELEGATE, url);
         } else
             return false;
-//        view.loadUrl(url);
-//        return true;
-//        return super.shouldOverrideUrlLoading(view,url);
     }
 
     @Override

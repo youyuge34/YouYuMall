@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.webkit.WebView;
 import android.webkit.WebViewFragment;
 
+import com.example.yousheng.latte.app.ConfigKeys;
+import com.example.yousheng.latte.app.Latte;
 import com.example.yousheng.latte.delegates.LatteDelegate;
 import com.example.yousheng.latte.delegates.web.route.RouteKeys;
 
@@ -53,7 +55,8 @@ public abstract class WebDelegate extends LatteDelegate {
                 mWebView = initializer.initWebViewSettings(mWebView);
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
-                mWebView.addJavascriptInterface(LatteWebInterface.create(this), "latte");
+                final String name = Latte.getLatteConfiguration(ConfigKeys.JAVASCRIPT_INTERFACE);
+                mWebView.addJavascriptInterface(LatteWebInterface.create(this), name);
                 //webview可用了
                 mIsWebViewAvailable = true;
             } else {

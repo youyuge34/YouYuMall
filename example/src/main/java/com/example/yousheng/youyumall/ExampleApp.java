@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.example.yousheng.ec.database.DatabaseManager;
 import com.example.yousheng.latte.app.Latte;
-import com.example.yousheng.latte.delegates.web.event.TestEvent;
+import com.example.yousheng.youyumall.event.TestEvent;
 import com.example.yousheng.latte.net.interceptors.LoggingInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;

@@ -1,9 +1,11 @@
-package com.example.yousheng.latte.delegates.web.event;
+package com.example.yousheng.youyumall.event;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import com.example.yousheng.latte.delegates.web.event.Event;
 
 /**
  * Created by 尤晟 on 2017-08-01.

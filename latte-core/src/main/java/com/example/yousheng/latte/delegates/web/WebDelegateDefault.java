@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.yousheng.latte.delegates.web.chromeClient.WebChromeClientImpl;
+import com.example.yousheng.latte.delegates.web.client.WebViewClientDefault;
 import com.example.yousheng.latte.delegates.web.route.RouteKeys;
 import com.example.yousheng.latte.delegates.web.route.Router;
 
@@ -34,12 +35,10 @@ public class WebDelegateDefault extends WebDelegate implements IWebViewInitializ
 
     @Override
     public WebViewClient initWebViewClient() {
-        return new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        };
+        WebViewClientDefault clientDefault = new WebViewClientDefault(this);
+        //设置页面start和end时候的回调
+        clientDefault.setIPageLoadListener(null);
+        return clientDefault;
     }
 
     @Override
